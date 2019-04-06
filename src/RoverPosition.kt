@@ -1,16 +1,12 @@
-class RoverPosition(var xPosition: Int, var yPosition: Int, var cardinalDirection: Char) {
-     companion object {
-         var directions = listOf('N','E','S','W')
-
-     }
+class RoverPosition(var xPosition: Int, var yPosition: Int, var cardinalDirection: CardinalDirection) {
     fun move(direction: Char):RoverPosition{
         when(direction) {
             'L' ->
-                cardinalDirection = leftDirection()
+                cardinalDirection = cardinalDirection.left()
             'R' ->
-                cardinalDirection = rightDirection()
+                cardinalDirection = cardinalDirection.right()
             'M' ->
-                when(cardinalDirection) {
+                when(cardinalDirection.cardinalDirection) {
                     'N' -> yPosition +=1
                     'E' -> xPosition +=1
                     'S' -> yPosition -= 1
@@ -21,22 +17,6 @@ class RoverPosition(var xPosition: Int, var yPosition: Int, var cardinalDirectio
     }
 
     fun getPosition():String{
-        return "$xPosition $yPosition $cardinalDirection"
-    }
-
-    private fun leftDirection(): Char {
-        if (cardinalDirection == directions.first()) {
-            return directions.last()
-        }else {
-            return directions[directions.indexOf(cardinalDirection) - 1]
-        }
-    }
-
-    private fun rightDirection(): Char {
-        if (cardinalDirection == directions.last()) {
-            return directions.first()
-        }else {
-            return directions[directions.indexOf(cardinalDirection) + 1]
-        }
+        return "$xPosition $yPosition ${cardinalDirection.cardinalDirection}"
     }
 }
