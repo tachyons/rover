@@ -13,3 +13,8 @@ fun main() {
     println(rover2.getPosition())
 
 }
+// TODO
+//  handle plateau constraints
+//  Better naming
+//  CLI
+//
